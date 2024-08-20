@@ -1,0 +1,21 @@
+EJERCICIO 1
+SELECT City, Population FROM north_american_cities -- Select the fields "City" and "Population" from the table "north_american_cities"
+WHERE Country LIKE "Canada"; -- Condition: The country is "Canada"
+EJERCICIO 2
+SELECT City, Latitude FROM north_american_cities -- Select the fields "City" and "Latitude" from the table "north_american_cities"
+WHERE Country LIKE "United States" -- Condition: The country is "United States"
+ORDER BY Latitude DESC; -- Order by latitude in descending order (the higher the latitude, the farther north the city is)
+EJERCICIO 3
+SELECT City from north_american_cities -- Select the field "City" from the table "north_american_cities"
+WHERE Longitude < 	-87.629798 -- The longitude is less than -87.629798 (Chicago’s longitude)
+ORDER BY Longitude; -- Order by longitude
+EJERCICIO 4
+SELECT City from north_american_cities -- Select the field "City" from the table "north_american_cities"
+WHERE Country LIKE "Mexico" -- Condition: The cities are in the country "Mexico"
+ORDER BY Population DESC -- Order by population in descending order
+LIMIT 2;
+EJERCICIO 5
+SELECT City from north_american_cities -- Select the field "City" from the table "north_american_cities"
+WHERE Country LIKE "United States" -- Condition: The cities are in the country "United States"
+ORDER BY Population DESC -- Order by population in descending order
+LIMIT 2 OFFSET 2; -- Limit the results to two cities that come after the first two results
