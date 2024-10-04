@@ -1,0 +1,42 @@
+Teoría
+1. 
+Como excepciones o casos avanzados que van más allá de las primeras tres formas normales.
+2. 
+La clausula WHERE filtra filas individuales, no se pueden utilizar funciones de agregación y se aplica antes de GROUP BY, mientras que la clausula HAVING filtra grupos de filas, se pueden utilizar funciones de agregación y se aplica después del GROUP BY. WHERE se utiliza para filtrar datos en base a condiciones simples sobre columnas individuales, donde no se necesite realizar agrupaciones, HAVING se utiliza para filtrar grupos de datos basados en cálculos agregados, donde se haya utilizado la clausula GROUP BY.
+3. 
+FROM -> WHERE -> SELECT -> ORDER BY
+4. 
+Anomalía de inserción, eliminación y actualización.
+5. 
+En el git commit se pone una foto de un avión estacionado, que representa esta acción porque guarda los cambios locales en el repositorio y los cambios están en la maquina local y no se ha compartido con otros. En el git push el avión está despegando que ese comando es utilizado para enviar los cambios guardados localmente que es como el avión despegando, enviando estos cambios. En el git add yo lo entiendo como los archivos que se quedaron sin subir y estaban esperando el comando, que es representado graciosamente por las personas estando en la escalera sin el avión.
+
+
+Práctica
+1. 
+SELECT 
+	AVG(edad) AS promedio_edad
+FROM alumnos
+WHERE apellido like '%ez';
+
+2. 
+SELECT
+	nombre,
+	apellido,
+	MAX(calificacion) AS calificacion_maxima
+FROM alumnos
+JOIN calificaciones  ON alumnos.expediente = calificaciones.expediente
+WHERE calificaciones.calificacion IS NOT NULL
+GROUP BY alumnos.expediente, alumnos.nombre, alumnos.apellido;
+
+3. 
+SELECT DISTINCT
+	nombre,
+	apellido,
+	calificacion
+FROM alumnos
+INNER JOIN calificaciones ON alumnos.expediente = calificaciones.expediente
+WHERE calificacion > (
+	SELECT AVG(calificacion)
+	FROM calificaciones
+	WHERE calificacion IS NOT NULL
+);
